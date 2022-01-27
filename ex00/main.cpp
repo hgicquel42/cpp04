@@ -6,29 +6,53 @@
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 18:24:01 by hgicquel          #+#    #+#             */
-/*   Updated: 2022/01/27 18:47:38 by hgicquel         ###   ########.fr       */
+/*   Updated: 2022/01/27 19:22:10 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 #include <iostream>
 
-int	main(void)
+void	test2(const Animal& animal)
+{
+	std::cout << animal.getType() << "\n";
+	animal.makeSound();
+}
+
+void test(void)
 {
 	const Animal meta;
 	const Dog dog;
 	const Cat cat;
+	
+	test2(meta);
+	test2(dog);
+	test2(cat);
+}
 
-	std::cout << meta.getType() << "\n";
-	meta.makeSound();
+void	wtest2(const WrongAnimal& wanimal)
+{
+	std::cout << wanimal.getType() << "\n";
+	wanimal.makeSound();
+}
 
-	std::cout << dog.getType() << "\n"; 
-	dog.makeSound();
+void	wtest(void)
+{
+	const WrongAnimal wmeta;
+	const WrongCat wcat;
 
-	std::cout << cat.getType() << "\n";
-	cat.makeSound();
+	wtest2(wmeta);
+	wtest2(wcat);
+}
 
-	return 0;
+int	main(void)
+{
+	test();
+	wtest();
+
+	return (0);
 }

@@ -5,6 +5,8 @@ INPUT = \
 	Animal.cpp \
 	Dog.cpp \
 	Cat.cpp \
+	WrongAnimal.cpp \
+	WrongCat.cpp \
 
 OUTPUT = ${INPUT:.cpp=.o}
 
