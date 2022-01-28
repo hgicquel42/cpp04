@@ -6,7 +6,7 @@
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 18:31:53 by hgicquel          #+#    #+#             */
-/*   Updated: 2022/01/27 18:53:09 by hgicquel         ###   ########.fr       */
+/*   Updated: 2022/01/28 16:36:36 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@ Cat::Cat(void):
 Cat::~Cat(void)
 {
 	std::cout << "Cat destructor called" << "\n";
+}
+
+Cat::Cat(const Cat& from):
+	Animal(from)
+{}
+
+Cat&	Cat::operator=(const Cat& from)
+{
+	this->Animal::operator=(from);
+	return (*this);
 }
 
 void	Cat::makeSound(void) const

@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   ICharacter.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/27 18:31:53 by hgicquel          #+#    #+#             */
-/*   Updated: 2022/01/28 16:36:30 by hgicquel         ###   ########.fr       */
+/*   Created: 2022/01/28 15:21:52 by hgicquel          #+#    #+#             */
+/*   Updated: 2022/01/28 16:30:22 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
-#include <iostream>
+#pragma once
 
-Dog::Dog(void):
-	Animal("Dog")
+class ICharacter
 {
-	std::cout << "Dog default constructor called" << "\n";
-}
-
-Dog::~Dog(void)
-{
-	std::cout << "Dog destructor called" << "\n";
-}
-
-Dog::Dog(const Dog& from):
-	Animal(from)
-{}
-
-Dog&	Dog::operator=(const Dog& from)
-{
-	this->Animal::operator=(from);
-	return (*this);
-}
-
-void	Dog::makeSound(void) const
-{
-	std::cout << "Woof" << "\n";
-}
+	public:
+		virtual ~ICharacter() {}
+		virtual const std::string& getName() const = 0;
+		virtual void equip(AMateria* m) = 0;
+		virtual void unequip(int idx) = 0;
+		virtual void use(int idx, ICharacter& target) = 0;
+};

@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/27 18:31:53 by hgicquel          #+#    #+#             */
-/*   Updated: 2022/01/28 16:36:30 by hgicquel         ###   ########.fr       */
+/*   Created: 2022/01/28 14:54:21 by hgicquel          #+#    #+#             */
+/*   Updated: 2022/01/28 16:30:42 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
-#include <iostream>
+#pragma once
+#include "ICharacter.hpp"
+#include <string>
 
-Dog::Dog(void):
-	Animal("Dog")
+class AMateria
 {
-	std::cout << "Dog default constructor called" << "\n";
-}
-
-Dog::~Dog(void)
-{
-	std::cout << "Dog destructor called" << "\n";
-}
-
-Dog::Dog(const Dog& from):
-	Animal(from)
-{}
-
-Dog&	Dog::operator=(const Dog& from)
-{
-	this->Animal::operator=(from);
-	return (*this);
-}
-
-void	Dog::makeSound(void) const
-{
-	std::cout << "Woof" << "\n";
-}
+	protected:
+		AMateria(const std::string& type);
+		AMateria(const AMateria& from);
+	public:
+		~AMateria(void);
+		const std::string& getType() const;
+		virtual AMateria* clone() const = 0;
+		virtual void use(ICharacter& target);
+};
