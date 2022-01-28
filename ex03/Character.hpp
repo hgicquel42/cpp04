@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ICharacter.hpp                                     :+:      :+:    :+:   */
+/*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/28 15:21:52 by hgicquel          #+#    #+#             */
-/*   Updated: 2022/01/28 16:42:27 by hgicquel         ###   ########.fr       */
+/*   Created: 2022/01/28 17:34:28 by hgicquel          #+#    #+#             */
+/*   Updated: 2022/01/28 17:37:38 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include <string>
+#include "ICharacter.hpp"
+#include "AMateria.hpp"
 
-class ICharacter
+class Character: public ICharacter
 {
+	private:
+		AMateria*	slots[4];
 	public:
-		virtual ~ICharacter() {}
-		virtual const std::string& getName() const = 0;
-		virtual void equip(AMateria* m) = 0;
-		virtual void unequip(int idx) = 0;
-		virtual void use(int idx, ICharacter& target) = 0;
+		Character(const std::string& name);
+		Character(const Character& from);
+		~Character(void);
+		Character&	operator=(const Character& from);
+		const std::string&	getName() const;
+		void	equip(AMateria* m);
+		void	unequip(int idx);
+		void	use(int idx, ICharacter& target);
 };
