@@ -6,7 +6,7 @@
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 13:21:06 by hgicquel          #+#    #+#             */
-/*   Updated: 2022/01/31 14:12:11 by hgicquel         ###   ########.fr       */
+/*   Updated: 2022/01/31 14:22:17 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,34 @@ int	main(void)
 	ICharacter* me = new Character("me");
 
 	AMateria* tmp;
+
+	tmp = src->createMateria("ice");
+	std::cout << tmp->getType() << "\n";
+	delete tmp;
+
+	tmp = src->createMateria("cure");
+	std::cout << tmp->getType() << "\n";
+	delete tmp;
+	
 	tmp = src->createMateria("ice");
 	me->equip(tmp);
+
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
+
 	tmp = src->createMateria("lol");
 	me->equip(tmp);
+
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	me->unequip(2);
+	delete tmp;
 
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
 	me->use(1, *bob);
 	me->use(2, *bob);
-
-	tmp = src->createMateria("ice");
-	std::cout << tmp->getType() << "\n";
-	delete tmp;
+	me->use(3, *bob);
 	
 	delete bob;
 	delete me;
