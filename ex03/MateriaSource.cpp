@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Character.cpp                                      :+:      :+:    :+:   */
+/*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/31 11:28:17 by hgicquel          #+#    #+#             */
-/*   Updated: 2022/01/31 12:41:23 by hgicquel         ###   ########.fr       */
+/*   Created: 2022/01/31 12:18:43 by hgicquel          #+#    #+#             */
+/*   Updated: 2022/01/31 12:41:15 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Character.hpp"
+#include "MateriaSource.hpp"
 
-Character::Character(const std::string& name):
-	slots{NULL, NULL, NULL, NULL},
-	name(name)
+MateriaSource::MateriaSource(void):
+	slots{NULL, NULL, NULL, NULL}
 {}
 
-Character::Character(const Character& from):
-	name(from.name)
+MateriaSource::~MateriaSource(void)
+{
+	for (int i = 0; i < 4; i++)
+		delete this->slots[i];
+}
+
+MateriaSource::MateriaSource(const MateriaSource& from)
 {
 	for (int i = 0; i < 4; i++)
 	{
@@ -29,15 +33,8 @@ Character::Character(const Character& from):
 	}
 }
 
-Character::~Character(void)
+MateriaSource& MateriaSource::operator=(const MateriaSource& from)
 {
-	for (int i = 0; i < 4; i++)
-		delete this->slots[i];
-}
-
-Character&	Character::operator=(const Character& from)
-{
-	this->name = from.name;
 	for (int i = 0; i < 4; i++)
 		delete this->slots[i];
 	for (int i = 0; i < 4; i++)
@@ -50,12 +47,7 @@ Character&	Character::operator=(const Character& from)
 	return (*this);
 }
 
-const std::string&	Character::getName(void) const
-{
-	return (this->name);
-}
-
-void	Character::equip(AMateria* m)
+void	MateriaSource::learnMateria(AMateria* m)
 {
 	for (int i = 0; i < 4; i++)
 	{
@@ -67,13 +59,12 @@ void	Character::equip(AMateria* m)
 	}
 }
 
-void	Character::unequip(int idx)
+AMateria*	MateriaSource::createMateria(const std::string& type)
 {
-	this->slots[idx] = NULL;
-}
+	int	i;
 
-void	Character::use(int idx, ICharacter& target)
-{
-	if (this->slots[idx])
-		this->slots[idx]->use(target);
+	for (i = 0; i < 4; i++)
+		if (this->slots[i] && this->slots[i]->getType() == type)
+			return (this->slots[i]->clone());
+	return (NULL);
 }

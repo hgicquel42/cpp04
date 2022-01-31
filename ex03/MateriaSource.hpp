@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Character.hpp                                      :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/28 17:34:28 by hgicquel          #+#    #+#             */
-/*   Updated: 2022/01/31 11:32:36 by hgicquel         ###   ########.fr       */
+/*   Created: 2022/01/31 12:20:31 by hgicquel          #+#    #+#             */
+/*   Updated: 2022/01/31 12:22:58 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "ICharacter.hpp"
-#include "AMateria.hpp"
+#include "IMateriaSource.hpp"
 
-class Character: public ICharacter
+class MateriaSource: public IMateriaSource
 {
 	private:
-		std::string	name;
 		AMateria*	slots[4];
 	public:
-		Character(const std::string& name);
-		Character(const Character& from);
-		~Character(void);
-		Character&	operator=(const Character& from);
-		const std::string&	getName(void) const;
-		void	equip(AMateria* m);
-		void	unequip(int idx);
-		void	use(int idx, ICharacter& target);
+		MateriaSource(void);
+		~MateriaSource(void);
+		MateriaSource(const MateriaSource& from);
+		MateriaSource&	operator=(const MateriaSource& from);
+		void learnMateria(AMateria* m);
+		AMateria* createMateria(const std::string& type);
 };
