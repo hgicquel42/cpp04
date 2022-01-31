@@ -6,15 +6,17 @@
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 12:18:43 by hgicquel          #+#    #+#             */
-/*   Updated: 2022/01/31 12:41:15 by hgicquel         ###   ########.fr       */
+/*   Updated: 2022/01/31 13:58:08 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MateriaSource.hpp"
 
-MateriaSource::MateriaSource(void):
-	slots{NULL, NULL, NULL, NULL}
-{}
+MateriaSource::MateriaSource(void)
+{
+	for (int i = 0; i < 4; i++)
+		this->slots[i] = NULL;
+}
 
 MateriaSource::~MateriaSource(void)
 {
@@ -49,6 +51,8 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& from)
 
 void	MateriaSource::learnMateria(AMateria* m)
 {
+	if (!m)
+		return ;
 	for (int i = 0; i < 4; i++)
 	{
 		if (!this->slots[i])

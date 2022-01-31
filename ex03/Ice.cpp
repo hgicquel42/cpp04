@@ -6,11 +6,10 @@
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 17:26:51 by hgicquel          #+#    #+#             */
-/*   Updated: 2022/01/28 17:31:27 by hgicquel         ###   ########.fr       */
+/*   Updated: 2022/01/31 13:42:36 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
 #include "Ice.hpp"
 #include <iostream>
 
@@ -28,6 +27,7 @@ Ice::Ice(const Ice& from):
 Ice&	Ice::operator=(const Ice& from)
 {
 	this->AMateria::operator=(from);
+	return (*this);
 }
 
 Ice*	Ice::clone(void) const

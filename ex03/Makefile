@@ -1,10 +1,12 @@
-NAME = animal
+NAME = materia
 
 INPUT = \
 	main.cpp \
 	AMateria.cpp \
 	Character.cpp \
 	Ice.cpp \
+	Cure.cpp \
+	MateriaSource.cpp \
 
 OUTPUT = ${INPUT:.cpp=.o}
 

@@ -1,41 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.cpp                                       :+:      :+:    :+:   */
+/*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/28 16:44:44 by hgicquel          #+#    #+#             */
-/*   Updated: 2022/01/31 13:39:24 by hgicquel         ###   ########.fr       */
+/*   Created: 2022/01/28 17:26:51 by hgicquel          #+#    #+#             */
+/*   Updated: 2022/01/31 13:56:52 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AMateria.hpp"
+#include "Cure.hpp"
 #include <iostream>
 
-AMateria::AMateria(const std::string& type):
-	type(type)
+Cure::Cure(void):
+	AMateria("cure")
 {}
 
-AMateria::~AMateria(void)
+Cure::~Cure(void)
 {}
 
-AMateria::AMateria(const AMateria& from):
-	type(from.type)
+Cure::Cure(const Cure& from):
+	AMateria(from)
 {}
 
-AMateria&	AMateria::operator=(const AMateria&)
+Cure&	Cure::operator=(const Cure& from)
 {
+	this->AMateria::operator=(from);
 	return (*this);
 }
 
-const std::string&	AMateria::getType(void) const
+Cure*	Cure::clone(void) const
 {
-	return (this->type);
+	return (new Cure());
 }
 
-void	AMateria::use(ICharacter& target)
+void	Cure::use(ICharacter& target)
 {
-	std::cout << "* " << "does nothing on" << " ";
-	std::cout << target.getName() << " *" << "\n";
+	std::cout << "* " << "heals" << " ";
+	std::cout << target.getName() << "'s ";
+	std::cout << "wounds" << " *" << "\n";
 }

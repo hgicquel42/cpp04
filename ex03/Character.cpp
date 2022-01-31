@@ -6,16 +6,18 @@
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 11:28:17 by hgicquel          #+#    #+#             */
-/*   Updated: 2022/01/31 12:41:23 by hgicquel         ###   ########.fr       */
+/*   Updated: 2022/01/31 13:57:40 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
 
 Character::Character(const std::string& name):
-	slots{NULL, NULL, NULL, NULL},
 	name(name)
-{}
+{
+	for (int i = 0; i < 4; i++)
+		this->slots[i] = NULL;
+}
 
 Character::Character(const Character& from):
 	name(from.name)
@@ -57,6 +59,8 @@ const std::string&	Character::getName(void) const
 
 void	Character::equip(AMateria* m)
 {
+	if (!m)
+		return ;
 	for (int i = 0; i < 4; i++)
 	{
 		if (!this->slots[i])
@@ -69,11 +73,16 @@ void	Character::equip(AMateria* m)
 
 void	Character::unequip(int idx)
 {
+	if (idx < 0 || idx > 3)
+		return ;
 	this->slots[idx] = NULL;
 }
 
 void	Character::use(int idx, ICharacter& target)
 {
-	if (this->slots[idx])
-		this->slots[idx]->use(target);
+	if (idx < 0 || idx > 3)
+		return ;
+	if (!this->slots[idx])
+		return ;
+	this->slots[idx]->use(target);
 }
